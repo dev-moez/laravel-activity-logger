@@ -1,0 +1,21 @@
+{
+    "name": "dev-moez/laravel-activity-logger",
+    "description": "A package to log changes on model done by any auth models",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Moez\\ActivityLogger\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Moez",
+            "email": "abdelrahman.moez@icloud.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1"
+    }
+}
