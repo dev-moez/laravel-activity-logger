@@ -1,6 +1,6 @@
 {
     "name": "dev-moez/laravel-activity-logger",
-    "description": "A package to log changes on model done by any auth models",
+    "description": "A package to log different events on your website such as model changes with the ability to log http requests associated, laravel user authentication events and all http request",
     "type": "project",
     "license": "MIT",
     "autoload": {
@@ -10,7 +10,7 @@
     },
     "authors": [
         {
-            "name": "Moez",
+            "name": "Abdelrahman Moez",
             "email": "abdelrahman.moez@icloud.com"
         }
     ],

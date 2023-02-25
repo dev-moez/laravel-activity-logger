@@ -20,7 +20,10 @@ class HttpLogService
                 ->map([$this, 'flatFiles'])
                 ->flatten();
                 
-            HttpLog::create([
+            HttpLog::updateOrCreate([
+                'request_hash' => md5($request),
+            ],
+            [
                 'model_type' => $model ? get_class($model): NULL,
                 'model_id' => $model?->id,
                 'method' => strtoupper($request->getMethod()),
@@ -32,7 +35,6 @@ class HttpLogService
                 'user_agent' => $request->userAgent(), 
                 'is_mobile' => self::isMobile(),
                 'created_at' => Carbon::now(),
-                'request_hash' => md5($request),
             ]);
 
             return response()->json([
@@ -52,7 +54,7 @@ class HttpLogService
 
 
     private static function isMobile() {
-        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"] ?? '');
     }
 
     public function flatFiles($file)

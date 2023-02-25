@@ -2,11 +2,9 @@
 
 namespace Moez\ActivityLogger\Http\Listeners;
 
-use Illuminate\Auth\Events\Attempting;
-use Illuminate\Auth\Events\Failed;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Attempting;
 use Moez\ActivityLogger\Services\AuthLogService;
-use Illuminate\Support\Facades\Auth;
 
 class AttemptingListener
 {

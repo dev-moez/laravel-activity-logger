@@ -17,44 +17,63 @@ use Illuminate\Auth\Events\Failed;
 use Moez\ActivityLogger\Http\Listeners\FailedListener;
 use Illuminate\Auth\Events\Attempting;
 use Moez\ActivityLogger\Http\Listeners\AttemptingListener;
+use Illuminate\Auth\Events\CurrentDeviceLogout;
+use Illuminate\Auth\Events\OtherDeviceLogout;
+use Illuminate\Auth\Events\Validated;
 
 class EventServiceProvider extends ServiceProvider
 {
     
     protected $listen = [
-        // User has logged in
+        // Login event listener
         Login::class => [
             LoginListener::class,
         ],
 
-        // User has registered
+        // Registered new user event listener
         Registered::class => [
             RegisteredListener::class
         ],
         
-        // User has been locked out due to many login attempts
+        // Lockout due to many login attempts event listener
         Lockout::class => [
             LockoutListener::class
         ],
 
-        // User has logged out
+        // Logout event listener
         Logout::class => [
             LogoutListener::class
         ],
 
-        // User has reset his password
+        // Password reset event listener
         PasswordReset::class => [
             PasswordResetListener::class
         ],
 
-        // Authentication failed
+        // Failed to authenticate event listener
         Failed::class => [
             FailedListener::class
         ],
 
+        // Attempt to login event listener
         Attempting::class => [
             AttemptingListener::class
-        ]
+        ],
+
+        // Current device logout event listener
+        CurrentDeviceLogout::class => [
+            CurrentDeviceLogoutListener::class,
+        ],
+        
+        // Other device logout event listener
+        OtherDeviceLogout::class => [
+            OtherDeviceLogoutListener::class,
+        ],
+
+        // Validated event listener: when a user validated his email address
+        Validated::class => [
+            ValidatedListener::class,
+        ],
     ];
 
     /**
